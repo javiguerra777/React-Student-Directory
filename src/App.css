@@ -1,0 +1,32 @@
+li {
+  list-style-type: none;
+}
+.center {
+  display: flex;
+  align-items: center;
+}
+.data {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+
+}
+.item {
+  background-color: blue;
+
+}
+#headerRow {
+  background-color: azure;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+#body {
+  background-color: black;
+  color: white;
+}
+#grid-container {
+  background-color: green;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+}
