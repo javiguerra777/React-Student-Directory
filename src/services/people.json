@@ -1,0 +1,30 @@
+[
+  {
+    "firstName": "joe",
+    "lastName": "mama",
+    "email":"JMama@u.pacific.edu",
+    "department":"arts",
+    "major":"creative artist"
+  },
+  {
+    "firstName": "Belete",
+    "lastName": "Kebde",
+    "email":"BKebde@u.pacific.edu",
+    "department":"psychology",
+    "major":"sports science"
+  },
+  {
+    "firstName": "Pascal",
+    "lastName": "Siakam",
+    "email":"PSiakam@u.pacific.edu",
+    "department":"communications",
+    "major":"impared hearing specialist"
+  },
+  {
+    "firstName": "Casey",
+    "lastName": "Reyes",
+    "email":"CReyes@u.pacific.edu",
+    "department":"software engineering",
+    "major":"computer science"
+  }
+]
