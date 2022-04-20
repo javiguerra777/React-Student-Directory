@@ -26,5 +26,12 @@
     "email":"CReyes@u.pacific.edu",
     "department":"software engineering",
     "major":"computer science"
+  },
+  {
+    "firstName": "John",
+    "lastName": "Cena",
+    "email":"Youcannotseeme@u.pacific.edu",
+    "department":"psychology",
+    "major":"sports trainer"
   }
 ]
