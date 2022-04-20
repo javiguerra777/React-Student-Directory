@@ -33,8 +33,9 @@ const Form = () => {
             Your Name: </label><br></br>
             <input
               type="text"
+              // <input type="text" id="username" name="username" required>
               id="firstName"
-           
+              required
               placeholder="first name"
               value={firstName}
               onChange={(e) =>  setFirstName(e.target.value)}
@@ -48,7 +49,7 @@ const Form = () => {
               type="text"
               id="lastName"
               placeholder="last name"
-     
+              required
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
             />
@@ -60,6 +61,7 @@ const Form = () => {
             <input
               type="email"
               id="email"
+              required
               placeholder="abc@gdm.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -67,9 +69,9 @@ const Form = () => {
          
         </div>
         <div>
-          <label htmlFor="department" >
+          <label htmlFor="department">
             Departement: </label> <br></br>
-            <select  onChange={(e) => setDepartement(e.target.value)} >
+            <select  onChange={(e) => setDepartement(e.target.value)}   required >
               {/* // type="text"
               // id="departement"
               // placeholder=""
@@ -88,7 +90,7 @@ const Form = () => {
 
         </div> 
         <div className="btn">
-        <button  type="submit" required>Add a Student</button>
+        <button  type="submit">Add a Student</button>
         </div>
        
         </fieldset>
