@@ -47,6 +47,7 @@ useEffect(()=> {
 useEffect(()=> {
   localStorage.setItem('people', JSON.stringify(newPeople));
 },[newPeople]);
+
 return (
   <>
   <Form firstName={firstName} lastName={lastName} email={email} departement = {departement} handleFormSubmit={handleFormSubmit} changeFName = {changeFName} changeLName={changeLName} changeEmail={changeEmail} changeDepartment={changeDepartment} />

@@ -1,5 +1,5 @@
 import './table.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import people from '../services/people.json';
 import { nanoid } from 'nanoid';
 
@@ -135,7 +135,22 @@ const Table = ({newPeople}) => {
       </>));
     }
   };
-  
+  //fixes bugs in the code when adding new user
+  useEffect(()=> {
+    setNameAscend(false);
+    setLNameAscend(false);
+    setEmailAscend(false);
+    setDepartmentAscend(false); 
+    setData(people2.map(({firstName, lastName, email, department}) => 
+    <>
+    <div id="grid-container">
+      <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      <li className='item' key={nanoid()}>{department}</li>
+    </div>
+    </>));
+  }, [newPeople])
   return (
     <>
     <section className='data'>
