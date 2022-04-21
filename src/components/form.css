@@ -1,0 +1,10 @@
+
+.formcontainer {
+display:flex;
+/* grid-template-columns: auto;  */
+align-items: center;
+justify-content: space-between;
+}
+.btn {
+ text-align: center;
+}
