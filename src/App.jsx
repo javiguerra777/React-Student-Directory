@@ -1,14 +1,9 @@
 import './App.css';
-import Form from './components/Form';
-import Search from './components/Search';
-import Table from './components/Table';
+import MainForm from './components/MainForm';
 function App() {
   return(
-  
   <>
-  <Form/>
-  <Search/>
-  <Table />
+  <MainForm/>
   </>
   );
 }

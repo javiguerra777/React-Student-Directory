@@ -1,10 +1,9 @@
-
 .formcontainer {
 display:flex;
 /* grid-template-columns: auto;  */
 align-items: center;
 justify-content: space-between;
 }
-.btn {
+.btn-container {
  text-align: center;
 }

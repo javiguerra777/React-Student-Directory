@@ -1,9 +1,11 @@
 import React, {useState}from 'react'
 import JsonData from'../services/people.json'
 
-const Search = () => {
-
+const Search = ({newPeople}) => {
+  const newdata = [...JsonData,...newPeople]
+  //  const newPeople ={newPeople}
   const [newSearch, setNewSearch] = useState('')
+  
   return (
     <div >
     <label htmlFor="search">
@@ -15,22 +17,15 @@ const Search = () => {
         value={newSearch}
         onChange={(e) => setNewSearch(e.target.value)}
       />
-      {JsonData.filter((value)=>{
-       if(newSearch==""){
+     
+      {newdata.filter((value)=>{
+       if(newSearch===""){
          return value
        }
-       else if(value.firstName.includes(newSearch)){
+       else if(value.firstName.toLowerCase().includes(newSearch)|| (value.lastName.toLowerCase().includes(newSearch.toLowerCase())|| value.email.toLowerCase().includes(newSearch.toLowerCase())||value.department.toLowerCase().includes(newSearch.toLowerCase()))){
          return value
        }
-       else if(value.lastName.includes(newSearch)){
-        return value
-      }
-      else if(value.email.includes(newSearch)){
-        return value
-      }
-      else if(value.department.includes(newSearch)){
-        return value
-      }
+       
       }).map((value,key)=>{
 return ( 
     <div>

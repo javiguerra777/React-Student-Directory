@@ -1,26 +1,12 @@
-import React,{useState} from 'react'
-import './form.css'
-const Form = () => {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [departement, setDepartement] = useState('');
-  
-
-
-  const  handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log( handleFormSubmit);
-    setFirstName('');
-    setLastName('');
-    setEmail('');
-    setDepartement('');
-    
+import './form.css';
+const Form = ({firstName, lastName, email, departement, handleFormSubmit, changeFName, changeLName, changeEmail, changeDepartment}) => {
+  //toggle between disabled button
+  let disabled = false;
+  if(firstName === '' || lastName === '' || email === '' || departement === ''){
+    disabled = true;
   };
-  
-  
-
   return (
+    <>
     <section >
       
       <form onSubmit={handleFormSubmit} >
@@ -36,8 +22,7 @@ const Form = () => {
               required
               placeholder="first name"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-            
+              onChange={changeFName}
             />
          
         </div>
@@ -50,7 +35,7 @@ const Form = () => {
               placeholder="last name"
               required
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={changeLName}
             />
          
         </div>
@@ -63,7 +48,7 @@ const Form = () => {
               required
               placeholder="abc@gdm.com"
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={changeEmail}
             />
          
         </div>
@@ -71,13 +56,13 @@ const Form = () => {
           <label htmlFor="department"
           >
             Departement: </label> <br></br>
-            <select   onChange={(e) => setDepartement(e.target.value)} required >
-              
-               <option value="department">departement</option>
-            <option value={departement}>Art</option>
-            <option value={departement}>Software engineging</option>
-            <option value={departement}>Communications</option>
-            <option value={departement}>Psycology</option>     
+            <select value={departement} onChange={changeDepartment}   required>
+  
+            <option value="">Select a department</option>
+            <option value="art">Art</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Communications">Communications</option>
+            <option value="Psychology">Psychology</option>     
              
             
             </select>
@@ -85,14 +70,14 @@ const Form = () => {
         </div>
 
         </div> 
-        <div className="btn">
-        <button  type="submit">Add a Student</button>
+        <div className='btn-container' >
+        <button className="btn" type="submit" disabled = {disabled}>Add a Student</button>
         </div>
        
         </fieldset>
       </form>
     </section>
+    </>
   );
 };
-
 export default Form;
