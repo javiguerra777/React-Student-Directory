@@ -5,13 +5,7 @@ const Form = () => {
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [departement, setDepartement] = useState('');
-  // const [student,setStudent] = useState([])
-  // const [addformdata,setAddFormData] = useState({
-  //   setFirstName:'',
-  //   setLastName:'',
-  //   setEmail:'',
-  //   setDepartement:'',
-  // })
+  
 
 
   const  handleFormSubmit = (e) => {
@@ -21,30 +15,9 @@ const Form = () => {
     setLastName('');
     setEmail('');
     setDepartement('');
-    alert(
-      `Hey ${firstName}! Thanks for telling us about your ${lastName}-year-old ${email} named ${departement}!`
-    );
-    // const feildName = e.target.getAttribute('name')
-    // const feildValue = e.target.value;
-    // const newFormData = {...addformdata};
-    // newFormData[feildName] = feildValue;
-    // setAddFormData(newFormData);
-
+    
   };
-  // const handleFormSubmit =(e)=>{
-  //   e.preventDefault();
-  //  console.log(handleFormSubmit);
-    // const newStudent ={
-
-    //   firstName:addformdata.firstName,
-    //   lastName:addformdata.lastName,
-    //   email:addformdata.email,
-    //   departement:addformdata,departement,
-    // }
-    // const newStudents = [...student,newStudent];
-    // setStudent(newStudents)
-  // }
-
+  
   
 
   return (
