@@ -1,28 +1,31 @@
 import './table.css';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import people from '../services/people.json';
 import { nanoid } from 'nanoid';
+
+
 const Table = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [department, setDepartment] = useState('');
   const [nameAscend, setNameAscend] = useState(false);
-  const [mypeeps, setMyPeeps] = useState([]);
-  const people2 = [...people, ...mypeeps];
+  const [newPeople, setNewPeople] = useState([]);
+  const people2 = [...people, ...newPeople];
   const submitForm = (e)=> {
     e.preventDefault();
-    setMyPeeps(state => state.concat({
+    setNewPeople([...newPeople, {
       firstName: firstName,
       lastName: lastName,
       email: email,
       department: department
-    }));
+    }]);
     setFirstName('');
     setLastName('');
     setEmail('');
     setDepartment('');
   }
+  //change ascending and descending
   const nameAscending = ()=> {
     if(!nameAscend){
       setNameAscend(true);
@@ -30,7 +33,17 @@ const Table = () => {
       setNameAscend(false);
     }
   };
-  console.log('my peeps array:', mypeeps);
+  //grab data from localstorage 
+  useEffect(()=> {
+    const retrievePeople = JSON.parse(localStorage.getItem('people'));
+    if(retrievePeople){
+      setNewPeople(retrievePeople);
+    }
+  }, []);
+  //how to store to localstorage
+  useEffect(()=> {
+    localStorage.setItem('people', JSON.stringify(newPeople));
+  },[newPeople]);
   return (
     <>
     <section>
