@@ -51,7 +51,7 @@ useEffect(()=> {
 return (
   <>
   <Form firstName={firstName} lastName={lastName} email={email} departement = {departement} handleFormSubmit={handleFormSubmit} changeFName = {changeFName} changeLName={changeLName} changeEmail={changeEmail} changeDepartment={changeDepartment} />
-  <Search />
+  <Search newPeople={newPeople} />
   <Table newPeople={newPeople} />
   </>
   );

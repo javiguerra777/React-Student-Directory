@@ -53,7 +53,8 @@ const Form = ({firstName, lastName, email, departement, handleFormSubmit, change
          
         </div>
         <div>
-          <label htmlFor="department">
+          <label htmlFor="department"
+          >
             Departement: </label> <br></br>
             <select value={departement} onChange={changeDepartment}   required>
   
