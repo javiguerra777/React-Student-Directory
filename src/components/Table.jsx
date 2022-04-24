@@ -1,24 +1,14 @@
 import './table.css';
 import { useEffect, useState } from 'react';
-import people from '../services/people.json';
-import { nanoid } from 'nanoid';
+//import { nanoid } from 'nanoid';
 
 
-const Table = ({newPeople}) => {
+const Table = ({newPeople, people2}) => {
   const [nameAscend, setNameAscend] = useState(false);
   const [lnameAscend, setLNameAscend] = useState(false);
   const [emailAscend, setEmailAscend] = useState(false);
   const [departmentAscend, setDepartmentAscend] = useState(false);
-  const people2 = [ ...people, ...newPeople ];
-  const [data, setData] = useState(people2.map(({firstName, lastName, email, department}) => 
-  <>
-  <div id="grid-container">
-    <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-    <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-    <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-    <li className='item' key={nanoid()}>{department}</li>
-  </div>
-  </>));
+  // const [data, setData] = useState('');
   //change ascending and descending
   //ascend and descend by first name
   const nameAscending = ()=> {
@@ -28,26 +18,28 @@ const Table = ({newPeople}) => {
 
     if(!nameAscend){
       setNameAscend(true);
-      setData(people2.sort((a,b)=> a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      return people2.sort((a,b)=> a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1);
     }else{
       setNameAscend(false);
-      setData(people2.sort((a,b)=> a.firstName.toLowerCase() < b.firstName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.firstName.toLowerCase() < b.firstName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      return people2.sort((a,b)=> a.firstName.toLowerCase() < b.firstName.toLowerCase() ? 1 : -1);
     }
   };
   //ascend and descend by last name
@@ -57,26 +49,28 @@ const Table = ({newPeople}) => {
     setDepartmentAscend(false); 
     if(!lnameAscend){
       setLNameAscend(true);
-      setData(people2.sort((a,b)=> a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      return people2.sort((a,b)=> a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1)
     }else{
       setLNameAscend(false);
-      setData(people2.sort((a,b)=> a.lastName.toLowerCase() < b.lastName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.lastName.toLowerCase() < b.lastName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      return people2.sort((a,b)=> a.lastName.toLowerCase() < b.lastName.toLowerCase() ? 1 : -1);
     }
   };
   const emailAscending = ()=> {
@@ -85,26 +79,28 @@ const Table = ({newPeople}) => {
     setDepartmentAscend(false); 
     if(!emailAscend){
       setEmailAscend(true);
-      setData(people2.sort((a,b)=> a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      return people2.sort((a,b)=> a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1);
     }else{
       setEmailAscend(false);
-      setData(people2.sort((a,b)=> a.email.toLowerCase() < b.email.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.email.toLowerCase() < b.email.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      return people2.sort((a,b)=> a.email.toLowerCase() < b.email.toLowerCase() ? 1 : -1);
     }
   };
   const departmentAscending = ()=> {
@@ -113,26 +109,28 @@ const Table = ({newPeople}) => {
     setEmailAscend(false);
     if(!departmentAscend){
       setDepartmentAscend(true);
-      setData(people2.sort((a,b)=> a.department.toLowerCase() > b.department.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.department.toLowerCase() > b.department.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      people2.sort((a,b)=> a.department.toLowerCase() > b.department.toLowerCase() ? 1 : -1);
     }else{
       setDepartmentAscend(false);
-      setData(people2.sort((a,b)=> a.department.toLowerCase() < b.department.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      // setData(people2.sort((a,b)=> a.department.toLowerCase() < b.department.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
+      // <>
+      // <div id="grid-container">
+      //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+      //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+      //   <li className='item' key={nanoid()}>{department}</li>
+      // </div>
+      // </>));
+      return people2.sort((a,b)=> a.department.toLowerCase() < b.department.toLowerCase() ? 1 : -1)
     }
   };
   //fixes bugs in the code when adding new user
@@ -141,15 +139,15 @@ const Table = ({newPeople}) => {
     setLNameAscend(false);
     setEmailAscend(false);
     setDepartmentAscend(false); 
-    setData(people2.map(({firstName, lastName, email, department}) => 
-    <>
-    <div id="grid-container">
-      <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-      <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-      <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-      <li className='item' key={nanoid()}>{department}</li>
-    </div>
-    </>));
+    // setData(people2.map(({firstName, lastName, email, department}) => 
+    // <>
+    // <div id="grid-container">
+    //   <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
+    //   <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
+    //   <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
+    //   <li className='item' key={nanoid()}>{department}</li>
+    // </div>
+    // </>));
   }, [newPeople])
   return (
     <>
@@ -162,7 +160,13 @@ const Table = ({newPeople}) => {
           </header>
           <main id="body">
             <code>
-            {data}
+              
+            {people2.map(({firstName, lastName, email, department}) => <div id="grid-container">
+              <li className="item">{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li>
+              <li className="item">{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li>
+              <li className="item">{email.toLowerCase()}</li>
+              <li className="item">{department.toLowerCase()}</li>
+            </div>)}
             </code>
           </main> 
     </section>
