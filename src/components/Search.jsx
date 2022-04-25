@@ -1,16 +1,17 @@
 import React, {useState}from 'react'
 import JsonData from'../services/people.json'
+import './search.css'
 
 const Search = ({newPeople}) => {
   const newdata = [...JsonData,...newPeople]
-  //  const newPeople ={newPeople}
+  
   const [newSearch, setNewSearch] = useState('')
   
   return (
     <div >
-    <label htmlFor="search">
+    <label  htmlFor="search">
     View/Search students: </label> <br></br>
-      <input
+      <input className='serachbtn'
         type="text"
         id="search"
         placeholder="search students"
@@ -34,6 +35,7 @@ return (
       <p>{value.email}</p>
       <p>{value.department}</p>
       </div>
+      
 
 )
       })}
