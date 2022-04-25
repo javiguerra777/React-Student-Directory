@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import Form from "./Form";
 import Search from "./Search";
 import Table from "./Table";
-import people from '../services/people.json'
+import people from '../services/people.json';
+import './form.css'
 const MainForm = ()=> {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
@@ -23,6 +24,7 @@ const MainForm = ()=> {
     setLastName('');
     setEmail('');
     setDepartement('');
+    setNewSearch('');
   };
   //handle changes in form
 const changeFName = (e) => {
@@ -56,6 +58,9 @@ const search = (data) => {
     })
   }
 };
+const refreshSearch = ()=> {
+  setNewSearch('');
+};
 //grab data from localstorage 
 useEffect(()=> {
   const retrievePeople = JSON.parse(localStorage.getItem('people'));
@@ -69,11 +74,11 @@ useEffect(()=> {
 },[newPeople]);
 
 return (
-  <>
+  <div id="container">
   <Form firstName={firstName} lastName={lastName} email={email} departement = {departement} handleFormSubmit={handleFormSubmit} changeFName = {changeFName} changeLName={changeLName} changeEmail={changeEmail} changeDepartment={changeDepartment} />
-  <Search newSearch={newSearch} handleSearch={handleSearch} />
+  <Search newSearch={newSearch} handleSearch={handleSearch} refreshSearch={refreshSearch} />
   <Table newPeople={newPeople} people2={search(people2)} />
-  </>
+  </div>
   );
 };
 

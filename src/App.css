@@ -1,0 +1,16 @@
+#main-content{
+  height: auto;
+  width: 100vw;
+}
+.button {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+}
+.button:hover {
+  text-decoration: underline;
+}
+.hidden {
+  visibility: hidden;
+  max-height: 0;
+}
