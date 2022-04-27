@@ -1,153 +1,132 @@
 import './table.css';
-import { useState } from 'react';
-import people from '../services/people.json';
-import { nanoid } from 'nanoid';
+import { useEffect, useState } from 'react';
+//import { nanoid } from 'nanoid';
+import { IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
 
 
-const Table = ({newPeople}) => {
+const Table = ({newPeople, people2}) => {
+  const up = <IoMdArrowDropup />
+  const down = <IoMdArrowDropdown />
+  //change between ascend and descending
   const [nameAscend, setNameAscend] = useState(false);
   const [lnameAscend, setLNameAscend] = useState(false);
   const [emailAscend, setEmailAscend] = useState(false);
   const [departmentAscend, setDepartmentAscend] = useState(false);
-  const people2 = [ ...people, ...newPeople ];
-  const [data, setData] = useState(people2.map(({firstName, lastName, email, department}) => 
-  <>
-  <div id="grid-container">
-    <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-    <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-    <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-    <li className='item' key={nanoid()}>{department}</li>
-  </div>
-  </>));
+  //change between hidden and active buttons
+  const [nameHidden, setNameHidden] = useState(true);
+  const [lnameHidden, setLNameHidden] = useState(true);
+  const [emailHidden, setEmailHidden] = useState(true);
+  const [departmentHidden, setDepartmentHidden] = useState(true);
   //change ascending and descending
   //ascend and descend by first name
   const nameAscending = ()=> {
-  setLNameAscend(false);
-  setEmailAscend(false);
-  setDepartmentAscend(false); 
+    setNameHidden(false);
+    setLNameHidden(true);
+    setEmailHidden(true);
+    setDepartmentHidden(true);
+
+    setLNameAscend(false);
+    setEmailAscend(false);
+    setDepartmentAscend(false); 
 
     if(!nameAscend){
       setNameAscend(true);
-      setData(people2.sort((a,b)=> a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      return people2.sort((a,b)=> a.firstName.toLowerCase() > b.firstName.toLowerCase() ? 1 : -1);
     }else{
       setNameAscend(false);
-      setData(people2.sort((a,b)=> a.firstName.toLowerCase() < b.firstName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      return people2.sort((a,b)=> a.firstName.toLowerCase() < b.firstName.toLowerCase() ? 1 : -1);
     }
   };
   //ascend and descend by last name
   const lNameAscending = ()=> {
+    setNameHidden(true);
+    setLNameHidden(false);
+    setEmailHidden(true);
+    setDepartmentHidden(true);
+
     setNameAscend(false);
     setEmailAscend(false);
     setDepartmentAscend(false); 
     if(!lnameAscend){
       setLNameAscend(true);
-      setData(people2.sort((a,b)=> a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      return people2.sort((a,b)=> a.lastName.toLowerCase() > b.lastName.toLowerCase() ? 1 : -1 );
     }else{
       setLNameAscend(false);
-      setData(people2.sort((a,b)=> a.lastName.toLowerCase() < b.lastName.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      return people2.sort((a,b)=> a.lastName.toLowerCase() < b.lastName.toLowerCase() ? 1 : -1);
     }
   };
+  //ascend and descend by email
   const emailAscending = ()=> {
+    setNameHidden(true);
+    setLNameHidden(true);
+    setEmailHidden(false);
+    setDepartmentHidden(true);
+
     setNameAscend(false);
     setLNameAscend(false);
     setDepartmentAscend(false); 
     if(!emailAscend){
       setEmailAscend(true);
-      setData(people2.sort((a,b)=> a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      return people2.sort((a,b)=> a.email.toLowerCase() > b.email.toLowerCase() ? 1 : -1);
     }else{
       setEmailAscend(false);
-      setData(people2.sort((a,b)=> a.email.toLowerCase() < b.email.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      return people2.sort((a,b)=> a.email.toLowerCase() < b.email.toLowerCase() ? 1 : -1);
     }
   };
+  //ascend and descend by department
   const departmentAscending = ()=> {
+    setNameHidden(true);
+    setLNameHidden(true);
+    setEmailHidden(true);
+    setDepartmentHidden(false);
+
     setNameAscend(false);
     setLNameAscend(false);
     setEmailAscend(false);
     if(!departmentAscend){
       setDepartmentAscend(true);
-      setData(people2.sort((a,b)=> a.department.toLowerCase() > b.department.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      people2.sort((a,b)=> a.department.toLowerCase() > b.department.toLowerCase() ? 1 : -1);
     }else{
       setDepartmentAscend(false);
-      setData(people2.sort((a,b)=> a.department.toLowerCase() < b.department.toLowerCase() ? 1 : -1).map(({firstName, lastName, email, department}) => 
-      <>
-      <div id="grid-container">
-        <li className='item' key={nanoid()}>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li> 
-        <li className='item' key={nanoid()}>{email.toLowerCase()}</li> 
-        <li className='item' key={nanoid()}>{department}</li>
-      </div>
-      </>));
+      return people2.sort((a,b)=> a.department.toLowerCase() < b.department.toLowerCase() ? 1 : -1);
     }
   };
-  
+  //fixes bugs in the code when adding new user
+  useEffect(()=> {
+    setNameAscend(false);
+    setLNameAscend(false);
+    setEmailAscend(false);
+    setDepartmentAscend(false); 
+
+    setNameHidden(true);
+    setLNameHidden(true);
+    setEmailHidden(true);
+    setDepartmentHidden(true);
+   
+  }, [newPeople])
+      
+ 
+
+
   return (
     <>
     <section className='data'>
-          <header id='headerRow'>
-            <div className='box'><h5>First Name <button className="change" onClick={nameAscending}>{nameAscend ? 'descend' : 'ascend'}</button></h5> </div>
-            <div className='box'><h5>Last Name <button className="change" onClick={lNameAscending}>{lnameAscend ? 'descend' : 'ascend'}</button></h5></div>
-            <div className='box'><h5>Email <button className="change" onClick={emailAscending}>{emailAscend ? 'descend' : 'ascend'}</button></h5></div>
-            <div className='box'><h5>Department<button className="change" onClick={departmentAscending}>{departmentAscend ? 'descend' : 'ascend'}</button></h5></div>
+          <header className='headerRow'>
+            <li className="box"><button className="button" onClick={nameAscending}>First Name{!nameHidden ? (nameAscend ? down : up) : ''}</button></li>
+            <li className="box"><button className="button" onClick={lNameAscending}>Last Name{!lnameHidden ? (lnameAscend ? down : up) : ''}</button></li>
+            <li className="box"><button className="button" onClick={emailAscending}>Email{!emailHidden ? (emailAscend ? down : up) : ''}</button></li>
+            <li className="box"><button className="button" onClick={departmentAscending}>Department{!departmentHidden ? (departmentAscend ? down : up) : ''}</button></li>
           </header>
           <main id="body">
             <code>
-            {data}
+              
+            {people2.map(({firstName, lastName, email, department}) => <div className="grid-container">
+              <li className="item" >{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li>
+              <li className="item" >{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li>
+              <li className="item" >{email.toLowerCase()}</li>
+              <li className="item" >{department.toLowerCase()}</li>
+            </div>)}
+
             </code>
           </main> 
     </section>

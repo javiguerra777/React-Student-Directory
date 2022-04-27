@@ -3,41 +3,32 @@ li {
 }
 .box {
   display: flex;
-  background-color: green;
-  border: solid 1px black;
 }
 .center {
   display: flex;
   align-items: center;
 }
-.change {
-  height: auto;
-  width: auto;
-}
 .data {
-  background-color: pink;
   display: flex;
   flex-direction: column;
-
 }
 .item {
-  background-color: blue;
-  border: solid black 1px;
+  background-color:#E2F9E1;
 }
-#headerRow {
+.grid-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+}
+.headerRow {
   background-color: azure;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
+  border: 3px silver solid
 }
 #body {
   background-color: black;
   color: white;
-}
-#grid-container {
-  background-color: green;
-  display: grid;
-  width: 100%;
-  grid-template-columns: repeat(4, 1fr);
 }
 /* media queries */
 @media screen and (max-width: 1000px){
@@ -54,4 +45,7 @@ li {
   .item{
     font-size: 8px;
   }
+}
+.frm-ctr {
+  background-color: red;
 }

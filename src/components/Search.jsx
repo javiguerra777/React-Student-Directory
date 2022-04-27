@@ -1,45 +1,22 @@
-import React, {useState}from 'react'
-import JsonData from'../services/people.json'
-import './search.css'
-
-const Search = ({newPeople}) => {
-  const newdata = [...JsonData,...newPeople]
-  
-  const [newSearch, setNewSearch] = useState('')
-  
+import { GrRefresh } from 'react-icons/gr';
+const Search = ({newSearch, handleSearch, refreshSearch}) => {
+  let disabled;
+  if(newSearch === ''){
+    disabled = true;
+  } else {
+    disabled = false;
+  }
   return (
-    <div >
-    <label  htmlFor="search">
-    View/Search students: </label> <br></br>
-      <input className='serachbtn'
+    <div>
+    <label htmlFor="search">
+    View/Search students: <button className="button" onClick={refreshSearch} disabled ={disabled}><GrRefresh /></button></label> <br></br>
+      <input
         type="text"
         id="search"
         placeholder="search students"
         value={newSearch}
-        onChange={(e) => setNewSearch(e.target.value)}
+        onChange={handleSearch}
       />
-     
-      {newdata.filter((value)=>{
-       if(newSearch===""){
-         return value
-       }
-       else if(value.firstName.toLowerCase().includes(newSearch)|| (value.lastName.toLowerCase().includes(newSearch.toLowerCase())|| value.email.toLowerCase().includes(newSearch.toLowerCase())||value.department.toLowerCase().includes(newSearch.toLowerCase()))){
-         return value
-       }
-       
-      }).map((value,key)=>{
-return ( 
-    <div>
-      <p>{value.firstName}</p>
-      <p>{value.lastName}</p>
-      <p>{value.email}</p>
-      <p>{value.department}</p>
-      </div>
-      
-
-)
-      })}
-   
   </div>
   )
 }
