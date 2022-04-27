@@ -50,7 +50,7 @@ li {
 }
 #item {
   background-color: #E2F9E1;
-  color: lightslategray;
+  color: black;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin: 0;
