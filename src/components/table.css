@@ -1,6 +1,14 @@
 li {
   list-style-type: none;
 }
+.buttons {
+  width: auto;
+  height: auto;
+  font-size: .7em;
+}
+.buttons:hover {
+  background: linear-gradient(50%);
+}
 .box {
   display: flex;
 }
@@ -12,13 +20,10 @@ li {
   display: flex;
   flex-direction: column;
 }
-.item {
-  background-color:#E2F9E1;
-}
 .grid-container {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 1fr;
 }
 .headerRow {
   background-color: azure;
@@ -26,26 +31,70 @@ li {
   grid-template-columns: repeat(4, 1fr);
   border: 3px silver solid
 }
+.edit {
+  background-color: greenyellow;
+  margin-right: 15px;
+}
+.even {
+  background-color: white;
+}
+.delete {
+  background-color: red;
+}
+.odd {
+  background-color: #E2F9E1;
+}
 #body {
   background-color: black;
   color: white;
 }
+#item {
+  background-color: #E2F9E1;
+  color: lightslategray;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 0;
+}
+#last {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 /* media queries */
-@media screen and (max-width: 1000px){
-  .item{
+@media screen and (max-width: 1200px){
+  .edit {
+    margin-right: 10px;
+  }
+  #item{
     font-size: 12px;
   }
 }
-@media screen and (max-width: 800px){
-  .item{
+@media screen and (max-width: 900px){
+  .edit {
+    margin-right: 5px;
+  }
+  #item{
     font-size: 10px;
   }
 }
-@media screen and (max-width: 600px){
-  .item{
+@media screen and (max-width: 800px){
+  #item{
     font-size: 8px;
   }
 }
-.frm-ctr {
-  background-color: red;
+@media screen and (max-width: 799px){
+  #item{
+    font-size: 6px;
+  }
+}
+@media screen and (max-width: 600px){
+  .buttons {
+    font-size: .3em;
+  }
+  .edit {
+    margin: 0;
+  }
+  #item{
+    font-size: 6px;
+  }
 }

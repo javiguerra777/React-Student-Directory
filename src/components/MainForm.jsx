@@ -3,7 +3,7 @@ import Form from "./Form";
 import Search from "./Search";
 import Table from "./Table";
 import people from '../services/people.json';
-import './form.css'
+import './form.css';
 const MainForm = ()=> {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
