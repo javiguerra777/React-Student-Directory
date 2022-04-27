@@ -9,7 +9,7 @@ const Search = ({newSearch, handleSearch, refreshSearch}) => {
   return (
     <div>
     <label htmlFor="search">
-    View/Search students: <button className="button" onClick={refreshSearch} disabled ={disabled}><GrRefresh /></button></label> <br></br>
+    <strong>View/Search students: </strong> <button className="button" onClick={refreshSearch} disabled ={disabled}><GrRefresh /></button></label> <br></br>
       <input
         type="text"
         id="search"
