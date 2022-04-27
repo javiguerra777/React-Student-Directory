@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
 
 
-const Table = ({newPeople, people2, persona, showData, editData}) => {
+const Table = ({newPeople, people2, persona, showData, editData, exit, deleteButtonClick}) => {
   const up = <IoMdArrowDropup />
   const down = <IoMdArrowDropdown />
   //change between ascend and descending
@@ -17,7 +17,13 @@ const Table = ({newPeople, people2, persona, showData, editData}) => {
   const [lnameHidden, setLNameHidden] = useState(true);
   const [emailHidden, setEmailHidden] = useState(true);
   const [departmentHidden, setDepartmentHidden] = useState(true);
-
+  //titlecase function
+  const properCase = (string) => {
+    let word = string.toLowerCase().split('');
+    word[0] = word[0].toUpperCase();
+    //sentence.join('');
+    return word.join('');
+  }
   //change ascending and descending
   //ascend and descend by first name
   const nameAscending = ()=> {
@@ -106,8 +112,7 @@ const Table = ({newPeople, people2, persona, showData, editData}) => {
    
   }, [newPeople]);
 
-    return (
-      <>  
+   if(!showData){ return ( 
       <section className='data'>
             <header className='headerRow'>
               <li className="box"><button className="button" onClick={nameAscending}>First Name{!nameHidden ? (nameAscend ? down : up) : ''}</button></li>
@@ -118,19 +123,31 @@ const Table = ({newPeople, people2, persona, showData, editData}) => {
             <main id="body">
               <code>
                 
-              {people2.map((person) => <div className="grid-container">
+              {people2.map((person, index) => <div className="grid-container">
                 {/* This ul is basically a row it contains all the li's  */}
                 <ul id='item'> 
-                <li>{person.firstName.replace(person.firstName[0], person.firstName[0].toUpperCase())}</li>
-                <li>{person.lastName.replace(person.lastName[0], person.lastName[0].toUpperCase())}</li>
+                <li>{properCase(person.firstName)}</li>
+                <li>{properCase(person.lastName)}</li>
                 <li><a href="#">{person.email.toLowerCase()}</a></li>
-                <li id = "last">{person.department.toLowerCase()} <div><button className="edit buttons" onClick={()=> {editData(person)}}>Edit</button><button className="delete buttons">X</button></div></li>
+                <li id = "last">{person.department.toLowerCase()} <div><button className="edit buttons" onClick={()=> {editData(person)}}>Edit</button><button className="delete buttons" onClick={()=>{deleteButtonClick(index)}}>X</button></div></li>
                 </ul>
               </div>)}
               </code>
             </main> 
       </section>
-      </>
     );
+   }else {
+     return (
+      <section className='main'>
+      <header>
+      <button onClick={exit}>Cancel</button>
+      <h3>Current Info: {properCase(persona.firstName)} {properCase(persona.lastName)} {persona.email.toLowerCase()} {persona.department.toLowerCase()}</h3>
+      </header>
+      <main>
+        <h3>Edit Info:</h3>
+      </main>
+      </section>
+     );
+   }
 }
 export default Table;
