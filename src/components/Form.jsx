@@ -20,57 +20,58 @@ const Form = ({firstName, lastName, email, departement, handleFormSubmit, change
   }
   return (
     <>
-    <p>University Student Directory</p>
-    <p>Add a new student: <button className="button" onClick={toggleHidden}>{!hiddenEye ? active : hidden}</button> </p>
+    <strong><p>University Student Directory</p></strong>
+    <strong><p>Add a New Student: <button className="button" onClick={toggleHidden}>{!hiddenEye ? active : hidden}</button> </p></strong>
     <section className={hiddenEye ? 'hidden' : ''}>
       <form onSubmit={handleFormSubmit} >
         <fieldset>
         <legend>Student Directory</legend>
        <div className="formcontainer">
           <div>
-          <label htmlFor="firstName">
+          <label htmlFor="firstName"  className={firstName==='' ? 'red' : ''}>
             Your Name: </label><br></br>
             <input
               type="text"
               id="firstName"
+              className={firstName === ''? 'error' : ''}
               required
               placeholder="first name"
               value={firstName}
               onChange={changeFName}
             />
-         
         </div>
         <div>
-          <label htmlFor="lastName">
-          Your LastName: </label> <br></br>
+          <label htmlFor="lastName"  className={lastName==='' ? 'red' : ''}>
+          Your Last Name: </label> <br></br>
             <input
               type="text"
               id="lastName"
+              className={lastName === ''? 'error' : ''}
               placeholder="last name"
               required
               value={lastName}
               onChange={changeLName}
             />
-         
+
         </div>
         <div>
-          <label htmlFor="email">
-          Your email: </label> <br></br>
+          <label htmlFor="email" className={email==='' ? 'red' : ''}>
+          Your Email: </label> <br></br>
             <input
               type="email"
               id="email"
+              className={email === ''? 'error' : ''}
               required
               placeholder="abc@gdm.com"
               value={email}
               onChange={changeEmail}
             />
-         
         </div>
         <div>
-          <label htmlFor="department"
+          <label htmlFor="department" className ={departement === '' ? 'red' : ''}
           >
-            Departement: </label> <br></br>
-            <select value={departement} onChange={changeDepartment}   required>
+            Department: </label> <br></br>
+            <select   className={departement==='' ? 'error': ''} value={departement} onChange={changeDepartment} required>
   
             <option value="">Select a department</option>
             <option value="art">Art</option>
@@ -80,7 +81,6 @@ const Form = ({firstName, lastName, email, departement, handleFormSubmit, change
              
             
             </select>
-     
         </div>
 
         </div> 

@@ -7,6 +7,7 @@ import { IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
 const Table = ({newPeople, people2}) => {
   const up = <IoMdArrowDropup />
   const down = <IoMdArrowDropdown />
+   
   //change between ascend and descending
   const [nameAscend, setNameAscend] = useState(false);
   const [lnameAscend, setLNameAscend] = useState(false);
@@ -103,7 +104,7 @@ const Table = ({newPeople, people2}) => {
     setEmailHidden(true);
     setDepartmentHidden(true);
    
-  }, [newPeople])
+  }, [newPeople]);
   return (
     <>
     <section className='data'>
@@ -117,10 +118,13 @@ const Table = ({newPeople, people2}) => {
             <code>
               
             {people2.map(({firstName, lastName, email, department}) => <div className="grid-container">
-              <li className="item" >{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li>
-              <li className="item" >{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li>
-              <li className="item" >{email.toLowerCase()}</li>
-              <li className="item" >{department.toLowerCase()}</li>
+              {/* This ul is basically a row it contains all the li's  */}
+              <ul id='item'> 
+              <li>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li>
+              <li>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li>
+              <li>{email.toLowerCase()}</li>
+              <li id = "last">{department.toLowerCase()} <div><button className="edit buttons">Edit</button><button className="delete buttons">X</button></div></li>
+              </ul>
             </div>)}
             </code>
           </main> 

@@ -1,15 +1,34 @@
+fieldset {
+  background-color: #E2F9E1;
+}
+legend {
+  background-color: whitesmoke;
+  border-radius: 15px;
+}
 .formcontainer {
 display:flex;
-/* grid-template-columns: auto;  */
+flex-wrap: wrap;
 align-items: center;
 justify-content: space-between;
 }
 .btn-container {
  text-align: center;
 }
+.error {
+  border: red solid 1px;
+}
+.red {
+  color: red;
+}
 #container {
+  background-color: whitesmoke;
+  border: 3px lightskyblue solid;
+  border-radius: 5px;
   display: flex;
+  position: relative;
+  top: 15px;
   flex-direction: column;
-  margin-left: 1%;
-  width: 98%;
+  margin-left: 3%;
+  width: 90%;
+  padding: 0 8px 15px 8px;
 }
