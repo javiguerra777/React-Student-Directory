@@ -4,10 +4,9 @@ import { useEffect, useState } from 'react';
 import { IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
 
 
-const Table = ({newPeople, people2}) => {
+const Table = ({newPeople, people2, persona, showData, editData}) => {
   const up = <IoMdArrowDropup />
   const down = <IoMdArrowDropdown />
-   
   //change between ascend and descending
   const [nameAscend, setNameAscend] = useState(false);
   const [lnameAscend, setLNameAscend] = useState(false);
@@ -18,6 +17,7 @@ const Table = ({newPeople, people2}) => {
   const [lnameHidden, setLNameHidden] = useState(true);
   const [emailHidden, setEmailHidden] = useState(true);
   const [departmentHidden, setDepartmentHidden] = useState(true);
+
   //change ascending and descending
   //ascend and descend by first name
   const nameAscending = ()=> {
@@ -105,31 +105,32 @@ const Table = ({newPeople, people2}) => {
     setDepartmentHidden(true);
    
   }, [newPeople]);
-  return (
-    <>
-    <section className='data'>
-          <header className='headerRow'>
-            <li className="box"><button className="button" onClick={nameAscending}>First Name{!nameHidden ? (nameAscend ? down : up) : ''}</button></li>
-            <li className="box"><button className="button" onClick={lNameAscending}>Last Name{!lnameHidden ? (lnameAscend ? down : up) : ''}</button></li>
-            <li className="box"><button className="button" onClick={emailAscending}>Email{!emailHidden ? (emailAscend ? down : up) : ''}</button></li>
-            <li className="box"><button className="button" onClick={departmentAscending}>Department{!departmentHidden ? (departmentAscend ? down : up) : ''}</button></li>
-          </header>
-          <main id="body">
-            <code>
-              
-            {people2.map(({firstName, lastName, email, department}) => <div className="grid-container">
-              {/* This ul is basically a row it contains all the li's  */}
-              <ul id='item'> 
-              <li>{firstName.replace(firstName[0], firstName[0].toUpperCase())}</li>
-              <li>{lastName.replace(lastName[0], lastName[0].toUpperCase())}</li>
-              <li>{email.toLowerCase()}</li>
-              <li id = "last">{department.toLowerCase()} <div><button className="edit buttons">Edit</button><button className="delete buttons">X</button></div></li>
-              </ul>
-            </div>)}
-            </code>
-          </main> 
-    </section>
-    </>
-  );
-};
+
+    return (
+      <>  
+      <section className='data'>
+            <header className='headerRow'>
+              <li className="box"><button className="button" onClick={nameAscending}>First Name{!nameHidden ? (nameAscend ? down : up) : ''}</button></li>
+              <li className="box"><button className="button" onClick={lNameAscending}>Last Name{!lnameHidden ? (lnameAscend ? down : up) : ''}</button></li>
+              <li className="box"><button className="button" onClick={emailAscending}>Email{!emailHidden ? (emailAscend ? down : up) : ''}</button></li>
+              <li className="box"><button className="button" onClick={departmentAscending}>Department{!departmentHidden ? (departmentAscend ? down : up) : ''}</button></li>
+            </header>
+            <main id="body">
+              <code>
+                
+              {people2.map((person) => <div className="grid-container">
+                {/* This ul is basically a row it contains all the li's  */}
+                <ul id='item'> 
+                <li>{person.firstName.replace(person.firstName[0], person.firstName[0].toUpperCase())}</li>
+                <li>{person.lastName.replace(person.lastName[0], person.lastName[0].toUpperCase())}</li>
+                <li><a href="#">{person.email.toLowerCase()}</a></li>
+                <li id = "last">{person.department.toLowerCase()} <div><button className="edit buttons" onClick={()=> {editData(person)}}>Edit</button><button className="delete buttons">X</button></div></li>
+                </ul>
+              </div>)}
+              </code>
+            </main> 
+      </section>
+      </>
+    );
+}
 export default Table;

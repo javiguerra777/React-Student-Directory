@@ -2,9 +2,20 @@ import { useState, useEffect } from "react";
 import Form from "./Form";
 import Search from "./Search";
 import Table from "./Table";
+import EditForm from "./EditForm";
 import people from '../services/people.json';
 import './form.css';
 const MainForm = ()=> {
+    //test
+    const [showData, setShowData] = useState(false);
+    const [persona, setPersona] = useState('');
+    const editData = (person) => {
+      setShowData(true);
+      setPersona(person);
+    }
+    const exit = ()=> {
+      setShowData(false);
+    }
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -73,13 +84,21 @@ useEffect(()=> {
   localStorage.setItem('people', JSON.stringify(newPeople));
 },[newPeople]);
 
-return (
+if(!showData) {
+  return (
   <div id="container">
   <Form firstName={firstName} lastName={lastName} email={email} departement = {departement} handleFormSubmit={handleFormSubmit} changeFName = {changeFName} changeLName={changeLName} changeEmail={changeEmail} changeDepartment={changeDepartment} />
   <Search newSearch={newSearch} handleSearch={handleSearch} refreshSearch={refreshSearch} />
-  <Table newPeople={newPeople} people2={search(people2)} />
+  <Table newPeople={newPeople} people2={search(people2)} persona ={persona} showData={showData} editData={editData}/>
   </div>
-  );
+    );
+  }else {
+    return (
+      <div id='container'>
+        <EditForm persona={persona} exit={exit}/>
+      </div>
+    )
+  }
 };
 
 export default MainForm;
