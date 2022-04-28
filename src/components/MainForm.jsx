@@ -15,13 +15,21 @@ const MainForm = ()=> {
     const exit = ()=> {
       setShowData(false);
     }
+  //first form
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [departement, setDepartement] = useState('');
+  //second form
+  const [newName, setNewName] = useState('');
+  const [newLName, setNewLName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newDepartment, setNewDepartment] = useState('');
+  //table info
   const [newPeople, setNewPeople] = useState(JSON.parse(localStorage.getItem('people')) ||[]);
   const [newSearch, setNewSearch] = useState('')
   const [people2, setPeople2] = useState([...people, ...newPeople]);
+  //form submissions
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setNewPeople([...newPeople, {
@@ -35,6 +43,11 @@ const MainForm = ()=> {
     setEmail('');
     setDepartement('');
     setNewSearch('');
+    setShowData(false);
+  };
+  //second form
+  const handleUpdate = (e) => {
+    e.preventDefault();
     setShowData(false);
   };
   //delete button
@@ -51,6 +64,19 @@ const changeLName = (e) => {
 };
 const changeEmail = (e) => {
   setEmail(e.target.value);
+};
+//new changes
+const changesDepartment = (e) => {
+  setNewDepartment(e.target.value);
+};
+const changesName = (e) => {
+  setNewName(e.target.value);
+};
+const changesLName = (e) => {
+  setNewLName(e.target.value);
+};
+const changesEmail = (e) => {
+  setNewEmail(e.target.value);
 };
 const changeDepartment = (e) => {
   setDepartement(e.target.value);
@@ -97,7 +123,10 @@ useEffect(()=> {
   <div id="container">
   <Form firstName={firstName} lastName={lastName} email={email} departement = {departement} handleFormSubmit={handleFormSubmit} changeFName = {changeFName} changeLName={changeLName} changeEmail={changeEmail} changeDepartment={changeDepartment} />
   <Search newSearch={newSearch} handleSearch={handleSearch} refreshSearch={refreshSearch} />
-  <Table newPeople={newPeople} people2={search(people2)} persona ={persona} showData={showData} editData={editData} exit={exit} deleteButtonClick={deleteButtonClick}/>
+  <Table newPeople={newPeople} people2={search(people2)} persona ={persona} showData={showData} editData={editData} exit={exit} deleteButtonClick={deleteButtonClick}
+  newName={newName} newLName={newLName} newEmail={newEmail} newDepartment={newDepartment} 
+  changesName={changesName} changesLName={changesLName} changesEmail={changesEmail} changesDepartment={changesDepartment}
+  handleUpdate={handleUpdate}/>
   </div>
     );
 };

@@ -3,8 +3,9 @@ import { useEffect, useState } from 'react';
 //import { nanoid } from 'nanoid';
 import { IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
 
-
-const Table = ({newPeople, people2, persona, showData, editData, exit, deleteButtonClick}) => {
+ 
+const Table = ({newPeople, people2, persona, showData, editData, exit, deleteButtonClick, newName, newLName,
+   newEmail, newDepartment, changesName, changesLName, changesEmail, changesDepartment, handleUpdate}) => {
   const up = <IoMdArrowDropup />
   const down = <IoMdArrowDropdown />
   //change between ascend and descending
@@ -145,6 +146,45 @@ const Table = ({newPeople, people2, persona, showData, editData, exit, deleteBut
       </header>
       <main>
         <h3>Edit Info:</h3>
+        <form>
+          <label>
+            New First Name:
+            <input  
+              type="text"
+              id="firstName"
+              placeholder="first name"
+              value={newName}
+              onChange={changesName}/>
+          </label>
+          <label>
+            New Last Name:
+            <input
+            type="text"
+            id="lastName"
+            placeholder="last name"
+            value={newLName}
+            onChange={changesLName} />
+          </label>
+          <label>
+            New Email:
+            <input 
+            type="text"
+            id="lastName"
+            placeholder="email"
+            value={newEmail}
+            onChange={changesEmail}/>
+          </label>
+          <label>
+            New Department:
+            <input 
+            type="text"
+            id="department"
+            placeholder="last name"
+            value={newDepartment}
+            onChange={changesDepartment}/>
+          </label>
+          <button onClick={handleUpdate}>Update Info</button>
+        </form>
       </main>
       </section>
      );
