@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import Form from "./Form";
 import Search from "./Search";
 import Table from "./Table";
-import EditForm from "./EditForm";
 import people from '../services/people.json';
 import './form.css';
 const MainForm = ()=> {
@@ -16,13 +15,21 @@ const MainForm = ()=> {
     const exit = ()=> {
       setShowData(false);
     }
+  //first form
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [departement, setDepartement] = useState('');
-  const [newPeople, setNewPeople] = useState(JSON.parse(localStorage.getItem('people')) || []);
+  //second form
+  const [newName, setNewName] = useState('');
+  const [newLName, setNewLName] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newDepartment, setNewDepartment] = useState('');
+  //table info
+  const [newPeople, setNewPeople] = useState(JSON.parse(localStorage.getItem('people')) ||[]);
   const [newSearch, setNewSearch] = useState('')
-  const people2 = [ ...people, ...newPeople ]
+  const [people2, setPeople2] = useState([...people, ...newPeople]);
+  //form submissions
   const handleFormSubmit = (e) => {
     e.preventDefault();
     setNewPeople([...newPeople, {
@@ -36,6 +43,17 @@ const MainForm = ()=> {
     setEmail('');
     setDepartement('');
     setNewSearch('');
+    setShowData(false);
+  };
+  //second form
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    setShowData(false);
+  };
+  //delete button
+  const deleteButtonClick = (index)=> {
+    const newestPeople = people2 && people2.filter((element, i) => i !== index);
+    setPeople2(newestPeople);
   };
   //handle changes in form
 const changeFName = (e) => {
@@ -46,6 +64,19 @@ const changeLName = (e) => {
 };
 const changeEmail = (e) => {
   setEmail(e.target.value);
+};
+//new changes
+const changesDepartment = (e) => {
+  setNewDepartment(e.target.value);
+};
+const changesName = (e) => {
+  setNewName(e.target.value);
+};
+const changesLName = (e) => {
+  setNewLName(e.target.value);
+};
+const changesEmail = (e) => {
+  setNewEmail(e.target.value);
 };
 const changeDepartment = (e) => {
   setDepartement(e.target.value);
@@ -72,6 +103,10 @@ const search = (data) => {
 const refreshSearch = ()=> {
   setNewSearch('');
 };
+//fixes another bug when adding new people
+useEffect(()=> {
+  setPeople2([...people, ...newPeople]);
+}, [newPeople])
 //grab data from localstorage 
 useEffect(()=> {
   const retrievePeople = JSON.parse(localStorage.getItem('people'));
@@ -84,21 +119,16 @@ useEffect(()=> {
   localStorage.setItem('people', JSON.stringify(newPeople));
 },[newPeople]);
 
-if(!showData) {
   return (
   <div id="container">
   <Form firstName={firstName} lastName={lastName} email={email} departement = {departement} handleFormSubmit={handleFormSubmit} changeFName = {changeFName} changeLName={changeLName} changeEmail={changeEmail} changeDepartment={changeDepartment} />
   <Search newSearch={newSearch} handleSearch={handleSearch} refreshSearch={refreshSearch} />
-  <Table newPeople={newPeople} people2={search(people2)} persona ={persona} showData={showData} editData={editData}/>
+  <Table newPeople={newPeople} people2={search(people2)} persona ={persona} showData={showData} editData={editData} exit={exit} deleteButtonClick={deleteButtonClick}
+  newName={newName} newLName={newLName} newEmail={newEmail} newDepartment={newDepartment} 
+  changesName={changesName} changesLName={changesLName} changesEmail={changesEmail} changesDepartment={changesDepartment}
+  handleUpdate={handleUpdate}/>
   </div>
     );
-  }else {
-    return (
-      <div id='container'>
-        <EditForm persona={persona} exit={exit}/>
-      </div>
-    )
-  }
 };
 
 export default MainForm;
