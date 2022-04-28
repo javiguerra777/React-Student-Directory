@@ -2,6 +2,8 @@ import './table.css';
 import { useEffect, useState } from 'react';
 //import { nanoid } from 'nanoid';
 import { IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
+import EditForm from './EditForm';
+
 
 
 const Table = ({newPeople, people2, persona, showData, editData}) => {
@@ -17,6 +19,7 @@ const Table = ({newPeople, people2, persona, showData, editData}) => {
   const [lnameHidden, setLNameHidden] = useState(true);
   const [emailHidden, setEmailHidden] = useState(true);
   const [departmentHidden, setDepartmentHidden] = useState(true);
+  const [editContactId,seteditContactId] = useState(1)
 
   //change ascending and descending
   //ascend and descend by first name
@@ -107,8 +110,11 @@ const Table = ({newPeople, people2, persona, showData, editData}) => {
   }, [newPeople]);
 
     return (
-      <>  
+      <> 
+
+
       <section className='data'>
+        <form>
             <header className='headerRow'>
               <li className="box"><button className="button" onClick={nameAscending}>First Name{!nameHidden ? (nameAscend ? down : up) : ''}</button></li>
               <li className="box"><button className="button" onClick={lNameAscending}>Last Name{!lnameHidden ? (lnameAscend ? down : up) : ''}</button></li>
@@ -124,12 +130,14 @@ const Table = ({newPeople, people2, persona, showData, editData}) => {
                 <li>{person.firstName.replace(person.firstName[0], person.firstName[0].toUpperCase())}</li>
                 <li>{person.lastName.replace(person.lastName[0], person.lastName[0].toUpperCase())}</li>
                 <li><a href="#">{person.email.toLowerCase()}</a></li>
-                <li id = "last">{person.department.toLowerCase()} <div><button className="edit buttons" onClick={()=> {editData(person)}}>Edit</button><button className="delete buttons">X</button></div></li>
-                </ul>
-              </div>)}
+                <li id = "last">{person.department.toLowerCase()} <div><button className="delete buttons">Delete</button></div></li>
+                </ul> 
+                </div>)}
               </code>
             </main> 
+            </form>
       </section>
+     
       </>
     );
 }
