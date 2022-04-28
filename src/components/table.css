@@ -20,7 +20,6 @@ li {
   display: flex;
   flex-direction: column;
 }
-
 .grid-container {
   display: grid;
   width: 100%;
@@ -32,10 +31,7 @@ li {
   grid-template-columns: repeat(4, 1fr);
   border: 3px silver solid
 }
-.edit {
-  background-color: greenyellow;
-  margin-right: 15px;
-}
+
 .even {
   background-color: white;
 }

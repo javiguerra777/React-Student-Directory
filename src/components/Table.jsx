@@ -2,6 +2,8 @@ import './table.css';
 import { useEffect, useState } from 'react';
 //import { nanoid } from 'nanoid';
 import { IoMdArrowDropup, IoMdArrowDropdown} from 'react-icons/io'
+import EditForm from './EditForm';
+
 
  
 const Table = ({newPeople, people2, persona, showData, editData, exit, deleteButtonClick, newName, newLName,
@@ -18,6 +20,7 @@ const Table = ({newPeople, people2, persona, showData, editData, exit, deleteBut
   const [lnameHidden, setLNameHidden] = useState(true);
   const [emailHidden, setEmailHidden] = useState(true);
   const [departmentHidden, setDepartmentHidden] = useState(true);
+
   //titlecase function
   const properCase = (string) => {
     let word = string.toLowerCase().split('');
@@ -113,8 +116,10 @@ const Table = ({newPeople, people2, persona, showData, editData, exit, deleteBut
    
   }, [newPeople]);
 
+
    if(!showData){ return ( 
       <section className='data'>
+        <form>
             <header className='headerRow'>
               <li className="box"><button className="button" onClick={nameAscending}>First Name{!nameHidden ? (nameAscend ? down : up) : ''}</button></li>
               <li className="box"><button className="button" onClick={lNameAscending}>Last Name{!lnameHidden ? (lnameAscend ? down : up) : ''}</button></li>
@@ -133,9 +138,14 @@ const Table = ({newPeople, people2, persona, showData, editData, exit, deleteBut
                 <li id = "last">{person.department.toLowerCase()} <div><button className="delete buttons" onClick={()=>{deleteButtonClick(index)}}>X</button></div></li>
                 </ul>
               </div>)}
+
+
               </code>
             </main> 
+            </form>
       </section>
+
+
     );
    }else {
      return (
