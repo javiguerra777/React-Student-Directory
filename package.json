@@ -1,6 +1,7 @@
 {
   "name": "student-directory",
   "version": "0.1.0",
+  "homepage": "https://javiguerra777.github.io/React-Student-Directory/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
