@@ -4,6 +4,9 @@ import { FaEyeSlash } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
 
 const Wrapper = styled.div`
+  .bold {
+    font-weight: 800;
+  }
   fieldset {
     background-color: #e2f9e1;
   }
@@ -40,21 +43,24 @@ const Wrapper = styled.div`
   }
 `;
 
-const Form = ({ register, handleSubmit }) => {
+const Form = ({ register, handleSubmit, onSubmit }) => {
   //toggle between disabled button
   const [hiddenEye, setHiddenEye] = useState(false);
   const hidden = <FaEyeSlash />;
-  const active = <AiFillEye />
+  const active = <AiFillEye />;
   const toggleHidden = ()=> {
     setHiddenEye((prev) => !prev);
   }
-  const onSubmit = (data) => {
-    console.log(data);
-  }
   return (
     <Wrapper>
-    <strong><p>University Student Directory</p></strong>
-      <strong><p>Add a New Student: <button className="button" onClick={toggleHidden}>{!hiddenEye ? active : hidden}</button> </p></strong>
+    <h1 className="bold">University Student Directory</h1>
+        <p className="bold">Add a New Student:
+          <button
+            className="button"
+            onClick={toggleHidden}>
+            {hiddenEye ? active : hidden}
+          </button>
+        </p>
       {!hiddenEye && (
         <form onSubmit={handleSubmit(onSubmit)} >
           <fieldset>
@@ -68,6 +74,7 @@ const Form = ({ register, handleSubmit }) => {
               <input
                 type="text"
                   name="firstName"
+                  id="firstName"
                 placeholder="First Name"
                   {...register('firstName')}
               />
@@ -78,7 +85,8 @@ const Form = ({ register, handleSubmit }) => {
                 </label>
                 <br></br>
               <input
-                type="text"
+                  type="text"
+                  id="lastName"
                 name="lastName"
                   placeholder="Last Name"
                   {...register('lastName')}
@@ -92,7 +100,9 @@ const Form = ({ register, handleSubmit }) => {
                 <br></br>
               <input
                 type="email"
-                name="email"
+                  name="email"
+                  id="email"
+                placeholder="fakeemail@gmail.com"
                 {...register('email')}
               />
           </div>

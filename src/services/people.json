@@ -1,7 +1,6 @@
 [
   {
     "id":"1",
-
     "firstName": "joe",
     "lastName": "mama",
     "email":"JMama@u.pacific.edu",
@@ -17,7 +16,7 @@
     "major":"sports science"
   },
   {
-    "id":3,
+    "id":"3",
     "firstName": "Pascal",
     "lastName": "Siakam",
     "email":"PSiakam@u.pacific.edu",

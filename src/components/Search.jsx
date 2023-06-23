@@ -1,15 +1,32 @@
 import { GrRefresh } from 'react-icons/gr';
+import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  .serachbtn {
-    margin-left: 10px;
-    width: 20%;
-    margin-top: 20px;
-    height: 25px;
+margin: 15px 0;
+  .search-container {
+    border: solid 1px black;
+    border-radius: 10px;
+    display: flex;
+    margin: 5px 0 0 5px;
+    height: 40px;
+    width: 200px;
+    font-size: 16px;
+    .search-icon {
+      background: gray;
+      border-radius: 10px 0 0 10px;
+      width: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    input {
+      border: none;
+      border-radius: 0 10px 10px 0;
+    }
   }
 `;
-const Search = ({newSearch, handleSearch, refreshSearch}) => {
+const Search = ({ newSearch, handleSearch, refreshSearch }) => {
   return (
     <Wrapper>
     <label htmlFor="search">
@@ -22,13 +39,20 @@ const Search = ({newSearch, handleSearch, refreshSearch}) => {
         </button>
       </label>
       <br></br>
-      <input
-        type="text"
-        id="search"
-        placeholder="search students"
-        value={newSearch}
-        onChange={handleSearch}
-      />
+      <div className="search-container">
+        <div className="search-icon">
+          <BsSearch />
+        </div>
+        <input
+          type="search"
+          name="search"
+          id="search"
+          className="searchBtn"
+          placeholder="search students"
+          value={newSearch}
+          onChange={handleSearch}
+        />
+      </div>
   </Wrapper>
   )
 }
