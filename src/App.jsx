@@ -1,12 +1,14 @@
-import './App.css';
+import styled from 'styled-components';
 import MainForm from './components/MainForm';
-function App() {
-  
+
+const Wrapper = styled.div`
+    height: auto;
+    width: 100vw;
+`;
+export default function App() {
   return(
-  <div id="main-content">
-  <MainForm/>
-  </div>
+  <Wrapper>
+    <MainForm/>
+  </Wrapper>
   );
 }
-
-export default App;
