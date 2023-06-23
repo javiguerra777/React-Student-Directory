@@ -21,7 +21,7 @@ const TableWrapper = styled.table`
     height: 30px;
   }
 `;
-const Table = ({ data, searchTerm }) => {
+const Table = ({ data, searchTerm, removeStudent }) => {
   const columns = useMemo(() => [
     {
       Header: "First Name",
@@ -59,15 +59,21 @@ const Table = ({ data, searchTerm }) => {
       <TableWrapper {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr key={nanoid()} {...headerGroup.getHeaderGroupProps()}>
+            <tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
-                <th key={nanoid()} {...column.getHeaderProps}>{column.render("Header")}</th>
+                <th {...column.getHeaderProps}>{column.render("Header")}</th>
               ))}
             </tr>
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {rows.map((row) => <TBodyRow key={nanoid()} row={row} prepareRow={prepareRow} />)}
+          {rows.map((row) => (
+            <TBodyRow
+              row={row}
+              prepareRow={prepareRow}
+              removeStudent={removeStudent}
+            />
+          ))}
         </tbody>
       </TableWrapper>
     </Wrapper>

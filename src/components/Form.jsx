@@ -1,9 +1,27 @@
 import { useState } from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import { FaEyeSlash } from 'react-icons/fa';
 import { AiFillEye } from 'react-icons/ai';
 
 const Wrapper = styled.div`
+width: 100%;
+display: flex;
+flex-direction: column;
+form {
+  align-self: center;
+  max-width: 1200px;
+}
+.title {
+  font-size: 30px;
+  margin-top: 10px;
+  text-decoration: none;
+  color: orange;
+}
+.title:hover {
+  color: blue;
+  text-decoration: underline;
+}
   .bold {
     font-weight: 800;
   }
@@ -14,14 +32,19 @@ const Wrapper = styled.div`
     background-color: whitesmoke;
     border-radius: 15px;
   }
-  .formcontainer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-  }
   .btn-container {
+    margin-top: 10px;
     text-align: center;
+    button {
+      height: 35px;
+      padding: 0 30px;
+      color: white;
+      background: dodgerblue;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: lightblue;
+    }
   }
   .error {
     border: red solid 1px;
@@ -29,17 +52,20 @@ const Wrapper = styled.div`
   .red {
     color: red;
   }
-  #container {
-    background-color: whitesmoke;
-    border: 3px lightskyblue solid;
-    border-radius: 5px;
+  .form-container {
     display: flex;
-    position: relative;
-    top: 15px;
-    flex-direction: column;
-    margin-left: 3%;
-    width: 90%;
-    padding: 0 8px 15px 8px;
+    flex-wrap: wrap;
+    div {
+      margin-right: 20px;
+      input {
+        height: 30px;
+        width: 200px;
+      }
+      select{
+        height: 30px;
+        width: 200px;
+      }
+    }
   }
 `;
 
@@ -53,7 +79,7 @@ const Form = ({ register, handleSubmit, onSubmit }) => {
   }
   return (
     <Wrapper>
-    <h1 className="bold">University Student Directory</h1>
+    <Link href="/dashboard" className="title bold">University Directory Dashboard</Link>
         <p className="bold">Add a New Student:
           <button
             className="button"
@@ -65,7 +91,7 @@ const Form = ({ register, handleSubmit, onSubmit }) => {
         <form onSubmit={handleSubmit(onSubmit)} >
           <fieldset>
           <legend>Student Directory</legend>
-        <div className="formcontainer">
+        <div className="form-container">
             <div>
             <label htmlFor="firstName">
                   Your Name:

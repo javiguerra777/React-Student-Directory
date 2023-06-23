@@ -3,7 +3,7 @@ import { BsSearch } from 'react-icons/bs';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-margin: 15px 0;
+margin: 10px 0 10px 15px;
   .search-container {
     border: solid 1px black;
     border-radius: 10px;
@@ -25,6 +25,12 @@ margin: 15px 0;
       border-radius: 0 10px 10px 0;
     }
   }
+  .active {
+    background: green;
+  }
+  .disabled {
+    background: lightgray;
+  }
 `;
 const Search = ({ newSearch, handleSearch, refreshSearch }) => {
   return (
@@ -32,7 +38,7 @@ const Search = ({ newSearch, handleSearch, refreshSearch }) => {
     <label htmlFor="search">
         <strong>View/Search students: </strong>
         <button
-          className="button"
+          className={newSearch ? 'active' : 'disabled'}
           onClick={refreshSearch}
           disabled={!newSearch}>
           <GrRefresh />
