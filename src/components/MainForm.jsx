@@ -89,15 +89,18 @@ const handleSearch = (e)=> {
 const search = (data) => {
   if(newSearch === ''){
     return data;
-  }else {
-  return data.filter((value)=>{
-    if(value.firstName.toLowerCase().includes(newSearch)||
-    value.lastName.toLowerCase().includes(newSearch.toLowerCase())|| 
-    value.email.toLowerCase().includes(newSearch.toLowerCase())||
-    value.department.toLowerCase().includes(newSearch.toLowerCase())){
-      return value;
+  } else {
+    return data.filter((value) => {
+      if (
+        value.firstName.toLowerCase().includes(newSearch) ||
+        value.lastName.toLowerCase().includes(newSearch.toLowerCase()) ||
+        value.email.toLowerCase().includes(newSearch.toLowerCase()) ||
+        value.department.toLowerCase().includes(newSearch.toLowerCase())
+      ) {
+        return value;
       }
-    })
+      return null;
+    });
   }
 };
 const refreshSearch = ()=> {

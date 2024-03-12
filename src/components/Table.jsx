@@ -129,7 +129,7 @@ const Table = ({newPeople, people2, persona, showData, editData, exit, deleteBut
                 <ul id='item'> 
                 <li>{properCase(person.firstName)}</li>
                 <li>{properCase(person.lastName)}</li>
-                <li><a href="#">{person.email.toLowerCase()}</a></li>
+                <li><button onClick={() => window.location.href = person.email.toLowerCase()}>{person.email.toLowerCase()}</button></li>
                 <li id = "last">{person.department.toLowerCase()} <div><button className="delete buttons" onClick={()=>{deleteButtonClick(index)}}>X</button></div></li>
                 </ul>
               </div>)}
